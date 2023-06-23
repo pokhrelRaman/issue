@@ -1,7 +1,6 @@
 name: Bug Report
 description: Report an anomaly or unexpected behavior.
 labels: "bug" 
-projects: "test"
 body:
 - type: markdown
   attributes:

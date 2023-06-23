@@ -1,4 +1,5 @@
 name: Populate Project Fields
+
 on:
   issues:
     types: [opened, edited]
@@ -14,9 +15,6 @@ jobs:
           script: |
             const fields = context.payload.issue.body;
             console.log(context.payload.issue.body);
-            Logged-by = fields.match('Logged by');
-            console.log(Logged-by);
-            
             const customFields = {
               'Logged by': 'logged-by',
               'Reported on': 'reported-on',
@@ -31,13 +29,15 @@ jobs:
               console.log("this is field id ");
               console.log(fieldId);
               console.log("this is field id ");
-              if (fields && fields[fieldId] && fields[fieldId].value) {
-                console.log("field has id and value");
-                fieldsToUpdate[customField] = fields[fieldId].value;
-                console.log(fields[fieldId].value);
+              if (fields && fields.includes(customField)) {
+                console.log("field exists");
+                fieldsToUpdate[customField] = true;
               }
             });
-            return fieldsToUpdate;
+            console.log(fieldsToUpdate);
+            console.log(JSON.stringify(fieldsToUpdate));
+            core.setOutput('fieldsToUpdate', JSON.stringify(fieldsToUpdate));
+
       - name: Update project card
         uses: actions/github-script@v4
         with:
@@ -46,7 +46,7 @@ jobs:
             const columnName = 'To do'; // Replace with your column name
             const cardId = context.payload.issue.project_card?.id; // Use optional chaining to handle undefined property
             if (cardId) {
-              const fieldsToUpdate = context.outputs.fieldsToUpdate;
+              const fieldsToUpdate = JSON.parse('{{ steps.check_fields.outputs.fieldsToUpdate }}');
               const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
               const { data: project } = await octokit.rest.projects.get({
                 project_id: projectNumber

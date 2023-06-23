@@ -55,5 +55,5 @@ jobs:
                 });
               }
             } else {
-              console.log('Project card not found.');
+              console.log('message: Project card not found.');
             }

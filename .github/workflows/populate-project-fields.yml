@@ -12,8 +12,11 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const fields = context.payload.issue.body.input_fields;
-            console.log(context.payload.issue.body)
+            const fields = context.payload.issue.body;
+            console.log(context.payload.issue.body);
+            Logged-by = fields.match('Logged by');
+            console.log(Logged-by);
+            
             const customFields = {
               'Logged by': 'logged-by',
               'Reported on': 'reported-on',

@@ -13,7 +13,7 @@ jobs:
         with:
           script: |
             const fields = context.payload.issue.body.input_fields;
-            console.log(context.payload.issue.body)
+            console.log(context.payload.issue.body.imput_fields)
             const customFields = {
               'Logged by': 'logged-by',
               'Reported on': 'reported-on',

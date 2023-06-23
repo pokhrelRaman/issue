@@ -25,7 +25,7 @@ jobs:
             Object.keys(customFields).forEach((customField) => {
               const fieldId = customFields[customField];
               console.log("this is field id ");
-              console.log(fieldID);
+              console.log(fieldId);
               console.log("this is field id ");
               if (fields && fields[fieldId] && fields[fieldId].value) {
                 console.log("field has id and value");

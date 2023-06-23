@@ -15,6 +15,7 @@ jobs:
           script: |
             const fields = context.payload.issue.body;
             console.log(context.payload.issue.body);
+            console.log(JSON.stringify(context.payload.issue.body.input_fields));
             const customFields = {
               'Logged by': 'logged-by',
               'Reported on': 'reported-on',

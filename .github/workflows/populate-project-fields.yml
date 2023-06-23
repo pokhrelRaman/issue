@@ -13,7 +13,7 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const yaml = require('js-yaml');
+            const yaml = require('yaml');
             const fields = context.payload.issue.body;
             const data = yaml.safeLoad(fields);
             const loggedBy = data['Logged By'];

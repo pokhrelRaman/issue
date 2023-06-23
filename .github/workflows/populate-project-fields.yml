@@ -21,12 +21,16 @@ jobs:
               'Severity': 'severity',
               'Environment': 'environment'
             };
-            console.log(fields);
             const fieldsToUpdate = {};
             Object.keys(customFields).forEach((customField) => {
               const fieldId = customFields[customField];
+              console.log("this is field id ");
+              console.log(fieldID);
+              console.log("this is field id ");
               if (fields && fields[fieldId] && fields[fieldId].value) {
+                console.log("field has id and value");
                 fieldsToUpdate[customField] = fields[fieldId].value;
+                console.log(fields[fieldId].value);
               }
             });
             return fieldsToUpdate;

@@ -21,7 +21,7 @@ jobs:
               'Severity': 'severity',
               'Environment': 'environment'
             };
-            console.log(customFields)
+            console.log(fields);
             const fieldsToUpdate = {};
             Object.keys(customFields).forEach((customField) => {
               const fieldId = customFields[customField];

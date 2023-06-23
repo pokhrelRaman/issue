@@ -32,6 +32,7 @@ jobs:
               if (fields && fields.includes(customField)) {
                 console.log("field exists");
                 fieldsToUpdate[customField] = true;
+                console.log(JSON.stringify(fields);
               }
             });
             console.log(fieldsToUpdate);

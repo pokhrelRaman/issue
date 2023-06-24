@@ -22,11 +22,7 @@ jobs:
             const fs = require("fs");
             const yaml = require("js-yaml");
             const fields = fs.readFileSync("issue-body.yml", "utf8");
-            try {
               const data = yaml.load(fields);
               const loggedBy = data.body[1].id;
               console.log("Logged By:", loggedBy);
-            } catch (error) {
-              console.error("Error parsing YAML:", error);
-            }
           '

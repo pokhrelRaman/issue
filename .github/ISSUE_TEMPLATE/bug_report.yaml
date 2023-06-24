@@ -3,9 +3,6 @@ description: Report an anomaly or unexpected behavior.
 labels: "bug" 
 assignees:
   - pokhrelRaman
-
-projects:
-  - test
   
 body:
 - type: markdown
@@ -111,13 +108,12 @@ body:
   attributes:
     label: Expected Behavior
     description: Tell us what you expected to see!
+
+    
 - type: markdown
   attributes:
     value: |
-      ## Assignees
+      ## Additional Information
 
-      - @pokhrelRaman
-
-      ## Project
-
-      - [x] test
+      - **Assignee:** @pokhrelRaman
+      - **Project:** test

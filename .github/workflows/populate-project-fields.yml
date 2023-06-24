@@ -12,7 +12,7 @@ jobs:
         id: check_fields
         uses: actions/checkout@v2
         with:
-          script: |
+          run: |
             const yaml = require('js-yaml');
             const fields = context.payload.issue.body;
             const data = yaml.safeLoad(fields);

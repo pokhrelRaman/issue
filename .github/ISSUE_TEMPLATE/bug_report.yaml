@@ -23,7 +23,7 @@ body:
   validations:
     required: true
   attributes:
-    label: Logged_By 
+    label: Logged_By
     description: Who found this issue?
 
 - type: input
@@ -86,7 +86,7 @@ body:
       - Production
 
 - type: textarea
-  id: screenshots
+  id: screenshot
   validations:
     required: true
   attributes:
@@ -113,10 +113,3 @@ body:
     description: Tell us what you expected to see!
 
     
-- type: markdown
-  attributes:
-    value: |
-      ## Additional Information
-
-      - **Assignee:** @pokhrelRaman
-      - **Project:** test

@@ -7,14 +7,13 @@ on:
 jobs:
   populate-fields:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Extract Data from fields
-        id: check_fields
+      - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          run: |
-            const yaml = require('js-yaml');
-            const fields = context.payload.issue.body;
-            const data = yaml.safeLoad(fields);
-            const loggedBy = data['Logged By'];
-            console.log('Logged By:', loggedBy);
+
+      - name: Extract Data from fields
+        run: |
+          echo "${{ github.event.issue.body }}" > issue-body.yml
+          loggedBy=$(cat issue-body.yml | awk -F'\n' '/### Logged By/{print $2}')
+          echo "Logged By: $loggedBy"

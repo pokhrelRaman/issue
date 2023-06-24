@@ -46,38 +46,16 @@ jobs:
 
             const data = context.payload.issue.body;
             console.log(data);
+            const regexPattern = /### (\w+)\n\n(.+?)(?:\n\n|$)/g;
+              let match;
+              const fields = {};
+              while ((match = regexPattern.exec(data)) !== null) {
+                const fieldName = match[1];
+                const fieldValue = match[2];
+                fields[fieldName] = fieldValue;
+              }
+              console.log(fields);
 
-            const loggedByRegex = /### Logged By\n\n(.*?)\n/;
-            const reportedOnRegex = /### Reported on\n\n(.*?)\n/;
-            const epicFeaturesRegex = /### Epic Features\n\n(.*?)\n/;
-            const urlRegex = /### URL, if applicable\n\n(.*?)\n/;
-            const descriptionRegex = /### Description\n\n(.*?)\n/;
-            const severityRegex = /### Severity\n\n(.*?)\n/;
-            const environmentRegex = /### Environment\n\n(.*?)\n/;
-            const screenshotsRegex = /### Screenshot\(s\)\n\n(.*?)\n/;
-            const reproduceRegex = /### How to reproduce\?\n\n(.*?)\n/;
-            const expectedBehaviorRegex = /### Expected Behavior\n\n(.*?)\n/;
-
-            const loggedBy = loggedByRegex.exec(data)[1];
-            const reportedOn = reportedOnRegex.exec(data)[1];
-            const epicFeatures = epicFeaturesRegex.exec(data)[1];
-            const url = urlRegex.exec(data)[1];
-            const description = descriptionRegex.exec(data)[1];
-            const severity = severityRegex.exec(data)[1];
-            const environment = environmentRegex.exec(data)[1];
-            const screenshots = screenshotsRegex.exec(data)[1];
-            const reproduce = reproduceRegex.exec(data)[1];
-            const expectedBehavior = expectedBehaviorRegex.exec(data)[1];
-
-            console.log('Logged By:', loggedBy);
-            console.log('Reported On:', reportedOn);
-            console.log('Epic Features:', epicFeatures);
-            console.log('URL:', url);
-            console.log('Description:', description);
-            console.log('Severity:', severity);
-            console.log('Environment:', environment);
-            console.log('Screenshots:', screenshots);
-            console.log('How to reproduce:', reproduce);
-            console.log('Expected Behavior:', expectedBehavior);
+            
             
     

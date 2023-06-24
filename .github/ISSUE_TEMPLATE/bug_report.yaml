@@ -23,7 +23,7 @@ body:
   validations:
     required: true
   attributes:
-    label: Logged By 
+    label: Logged_By 
     description: Who found this issue?
 
 - type: input
@@ -32,7 +32,7 @@ body:
     required: false
     default: null
   attributes:
-    label: Reported on
+    label: Reported_On
     description: When was this bug encountered on?
     placeholder: YYYY-MM-DD
 
@@ -41,7 +41,7 @@ body:
   validations:
     required: true
   attributes:
-    label: Epic Features
+    label: Epic_Features
     description: Where is the issue?
 
 - type: input
@@ -50,7 +50,7 @@ body:
     required: false
     default: null
   attributes:
-    label: URL, if applicable 
+    label: URL 
     description: What is the URL of the page with the mentioned bug?
 
 - type: input
@@ -90,7 +90,7 @@ body:
   validations:
     required: true
   attributes:
-    label: Screenshot(s)
+    label: Screenshot
     description: Show us what the issue is. Either select the files you want or simply drag and drop files here.
 
 - type: input
@@ -99,7 +99,7 @@ body:
     required: false
     default: null
   attributes:
-    label: How to reproduce?
+    label: How_to_reproduce?
     description: Tell us how to reproduce the issue!
 
 
@@ -109,7 +109,7 @@ body:
     required: false
     default : null
   attributes:
-    label: Expected Behavior
+    label: Expected_Behavior
     description: Tell us what you expected to see!
 
     

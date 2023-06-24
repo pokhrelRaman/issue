@@ -11,13 +11,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      
+      - name: Install js-yaml
+        run: npm install js-yaml
 
       - name: Extract Data from fields
         run: |
-          const yaml = require('yaml');
+          const yaml = require('js-yaml');
           cont yaml =  context.payload.issue.body;
           
           const data = yaml.parse(yamlScript);
           const loggedBy = data['Logged By'];
-        
           console.log('Logged By:', loggedBy);

@@ -19,7 +19,7 @@ body:
       Please provide the following details about the issue you encountered.  
 
 - type: input
-  id: logged-by
+  id: loggedBy
   validations:
     required: true
   attributes:
@@ -27,16 +27,17 @@ body:
     description: Who found this issue?
 
 - type: input
-  id: reported-on
+  id: reportedOn
   validations:
     required: false
+    default: null
   attributes:
     label: Reported on
     description: When was this bug encountered on?
     placeholder: YYYY-MM-DD
 
 - type: input
-  id: epic-features
+  id: epicFeatures
   validations:
     required: true
   attributes:
@@ -47,6 +48,7 @@ body:
   id: url
   validations:
     required: false
+    default: null
   attributes:
     label: URL, if applicable 
     description: What is the URL of the page with the mentioned bug?
@@ -92,18 +94,20 @@ body:
     description: Show us what the issue is. Either select the files you want or simply drag and drop files here.
 
 - type: input
-  id: how-to-reproduce
+  id: howToReproduce
   validations:
     required: false
+    default: null
   attributes:
     label: How to reproduce?
     description: Tell us how to reproduce the issue!
 
 
 - type: input
-  id: expected-behavior
+  id: expectedBehavior
   validations:
     required: false
+    default : null
   attributes:
     label: Expected Behavior
     description: Tell us what you expected to see!

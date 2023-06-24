@@ -8,12 +8,12 @@ jobs:
   populate-fields:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if issue has custom fields
+      - name: Extract Data from fields
         id: check_fields
-        uses: actions/github-script@v4
+        uses: actions/checkout@v2
         with:
           script: |
-            
+            const yaml = require('js-yaml');
             const fields = context.payload.issue.body;
             const data = yaml.safeLoad(fields);
             const loggedBy = data['Logged By'];

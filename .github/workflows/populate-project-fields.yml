@@ -22,7 +22,7 @@ jobs:
             const fs = require("fs");
             const yaml = require("js-yaml");
             const fields = fs.readFileSync("issue-body.yml", "utf8");
-            const data = yaml.safeLoad(fields);
+            const data = yaml.Load(fields);
             const loggedBy = data["Logged By"];
             console.log("Logged By:", loggedBy);
           ';

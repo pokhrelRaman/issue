@@ -98,14 +98,6 @@ body:
     description: Tell us how to reproduce the issue!
 
 
-## Assignees
-
-- @pokhrelRaman
-
-## Project
-
-- [x] test
-
 - type: input
   id: expected-behavior
   validations:
@@ -113,3 +105,13 @@ body:
   attributes:
     label: Expected Behavior
     description: Tell us what you expected to see!
+- type: markdown
+  attributes:
+    value: |
+      ## Assignees
+
+      - @pokhrelRaman
+
+      ## Project
+
+      - [x] test

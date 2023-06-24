@@ -17,9 +17,12 @@ jobs:
 
       - name: Extract Data from fields
         run: |
-          const yaml = require('js-yaml');
-          cont yaml =  context.payload.issue.body;
-          
-          const data = yaml.parse(yamlScript);
-          const loggedBy = data['Logged By'];
-          console.log('Logged By:', loggedBy);
+          echo "${{ github.event.issue.body }}" > issue-body.yml
+          node -e '
+            const fs = require("fs");
+            const yaml = require("js-yaml");
+            const fields = fs.readFileSync("issue-body.yml", "utf8");
+            const data = yaml.safeLoad(fields);
+            const loggedBy = data["Logged By"];
+            console.log("Logged By:", loggedBy);
+          ';

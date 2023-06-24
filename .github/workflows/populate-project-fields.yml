@@ -17,13 +17,12 @@ jobs:
 
       - name: Extract Data from fields
         run: |
-          echo "${{  context.payload.issue.body.input_fields }}" > issue-body.yml
-           console.log(JSON.stringify(context.payload.issue.body.input_fields));
+          echo "${{ github.event.issue.body }}" > issue-body.yml
           node -e '
             const fs = require("fs");
             const yaml = require("js-yaml");
             const fields = fs.readFileSync("issue-body.yml", "utf8");
-              const data = yaml.load(fields);
-              const loggedBy = data.body[1].id;
-              console.log("Logged By:", loggedBy);
+            const parsedFields = yaml.safeLoad(fields);
+            const inputFields = parsedFields.input_fields;
+            console.log(JSON.stringify(inputFields));
           '

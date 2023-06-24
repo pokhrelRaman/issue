@@ -35,27 +35,21 @@ jobs:
               console.log(fields);
 
     - name: Check if issue has custom fields
-
       id: fields
-
       uses: actions/github-script@v4
-
       with:
-
-          script: |
-
-            const data = context.payload.issue.body;
-            console.log(data);
-            const regexPattern = /### (\w+)\n\n(.+?)(?:\n\n|$)/g;
-              let match;
-              const fields = {};
-              while ((match = regexPattern.exec(data)) !== null) {
-                const fieldName = match[1];
-                const fieldValue = match[2];
-                fields[fieldName] = fieldValue;
-                console.log(fieldName);
-                console.log(fieldValue);
-              }
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const data = context.payload.issue.body;
+          const regexPattern = /### (\w+)\n\n([\s\S]+?)(?:\n\n###|\n\n$)/g;
+          let match;
+          const fields = {};
+          while ((match = regexPattern.exec(data)) !== null) {
+            const fieldName = match[1];
+            const fieldValue = match[2].trim() || null; // Use null for empty field values
+            fields[fieldName] = fieldValue;
+          }
+          console.log(fields);
               console.log(fields);
 
             

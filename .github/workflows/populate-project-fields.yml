@@ -28,6 +28,7 @@ jobs:
           script: |
 
             const data = context.payload.issue.body;
+            console.log(data);
 
             const loggedByRegex = /### Logged By\n\n(.*?)\n/;
             const reportedOnRegex = /### Reported on\n\n(.*?)\n/;

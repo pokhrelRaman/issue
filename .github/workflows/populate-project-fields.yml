@@ -17,7 +17,8 @@ jobs:
 
       - name: Extract Data from fields
         run: |
-          echo "${{ github.event.issue.body }}" > issue-body.yml
+          echo "${{  context.payload.issue.body.input_fields }}" > issue-body.yml
+           console.log(JSON.stringify(context.payload.issue.body.input_fields));
           node -e '
             const fs = require("fs");
             const yaml = require("js-yaml");

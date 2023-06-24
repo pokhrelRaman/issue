@@ -16,14 +16,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Check if issue has custom fields
+      id: check_fields
+      uses: actions/github-script@v4
+      with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            script: |
+              const data = `### Logged By\n\nkhgfhjkl;\n\n### Reported on\n\nhjkl;lhg\n\n### Epic Features\n\noiuytreryuiop\n\n### URL, if applicable\n\n_No response_\n\n### Description\n\ndfghjkl\n\n### Severity\n\nHigh\n\n### Environment\n\nDev\n\n### Screenshot(s)\n\ndfghjkl;\n\n### How to reproduce?\n\n_No response_\n\n### Expected Behavior\n\n_No response_`;
+              const regexPattern = /### (\w+)\n\n(.+?)(?:\n\n|$)/g;
+              let match;
+              const fields = {};
+              while ((match = regexPattern.exec(data)) !== null) {
+                const fieldName = match[1];
+                const fieldValue = match[2];
+                fields[fieldName] = fieldValue;
+              }
+              console.log(fields);
 
-      - name: Check if issue has custom fields
+    - name: Check if issue has custom fields
 
-        id: check_fields
+      id: fields
 
-        uses: actions/github-script@v4
+      uses: actions/github-script@v4
 
-        with:
+      with:
 
           script: |
 
@@ -62,4 +78,5 @@ jobs:
             console.log('Screenshots:', screenshots);
             console.log('How to reproduce:', reproduce);
             console.log('Expected Behavior:', expectedBehavior);
-
+            
+    

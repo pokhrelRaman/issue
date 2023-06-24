@@ -14,6 +14,10 @@ jobs:
 
       - name: Extract Data from fields
         run: |
-          echo "${{ github.event.issue.body }}" > issue-body.yml
-          loggedBy=$(cat issue-body.yml | awk -F'\n' '/### Logged By/{print $2}')
-          echo "Logged By: $loggedBy"
+          const yaml = require('yaml');
+          cont yaml =  context.payload.issue.body;
+          
+          const data = yaml.parse(yamlScript);
+          const loggedBy = data['Logged By'];
+        
+          console.log('Logged By:', loggedBy);

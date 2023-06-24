@@ -23,6 +23,7 @@ jobs:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             script: |
               const data = `### Logged By\n\nkhgfhjkl;\n\n### Reported on\n\nhjkl;lhg\n\n### Epic Features\n\noiuytreryuiop\n\n### URL, if applicable\n\n_No response_\n\n### Description\n\ndfghjkl\n\n### Severity\n\nHigh\n\n### Environment\n\nDev\n\n### Screenshot(s)\n\ndfghjkl;\n\n### How to reproduce?\n\n_No response_\n\n### Expected Behavior\n\n_No response_`;
+              console.log(data);
               const regexPattern = /### (\w+)\n\n(.+?)(?:\n\n|$)/g;
               let match;
               const fields = {};

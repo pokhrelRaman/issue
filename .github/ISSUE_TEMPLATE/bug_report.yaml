@@ -97,6 +97,15 @@ body:
     label: How to reproduce?
     description: Tell us how to reproduce the issue!
 
+
+## Assignees
+
+- @pokhrelRaman
+
+## Project
+
+- [x] test
+
 - type: input
   id: expected-behavior
   validations:

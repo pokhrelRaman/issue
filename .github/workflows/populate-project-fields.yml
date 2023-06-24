@@ -53,6 +53,8 @@ jobs:
                 const fieldName = match[1];
                 const fieldValue = match[2];
                 fields[fieldName] = fieldValue;
+                console.log(fieldName);
+                console.log(fieldValue);
               }
               console.log(fields);
 

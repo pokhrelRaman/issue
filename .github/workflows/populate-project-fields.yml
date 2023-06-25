@@ -1,46 +1,54 @@
-name: Populate Project Fields
+name: Populate Project Fields and Process Project Card
 
 on:
-
   issues:
-
     types: [opened, edited]
-
-
-
+  project_card:
+    types:
+      - created
 
 jobs:
-
-  populate-fields:
-
+  populate-and-process:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Available Data in body
-      id: check_fields
-      uses: actions/github-script@v4
-      with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            script: |
-              console.log(context)
-              
-              
-              
-    - name: Check if issue has custom fields
-      id: fields
-      uses: actions/github-script@v4
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const data = context.payload.issue.body;
-          const regexPattern = /### (\w+)\n\n([\s\S]+?)(?:\n\n###|\n\n$)/g;
-          let match;
-          const fields = {};
-          while ((match = regexPattern.exec(data)) !== null) {
-            console.log(match[1]);
-            const fieldName = match[1];
-            const fieldValue = match[2].trim() || null; // Use null for empty field values
-            fields[fieldName] = fieldValue; 
-          }
-          console.log(fields);
-              console.log(fields);
+      - name: Available Data in body
+        id: check_fields
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            console.log(context)
+
+      - name: Check if issue has custom fields
+        id: fields
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const data = context.payload.issue.body;
+            const regexPattern = /### (\w+)\n\n([\s\S]+?)(?:\n\n###|\n\n$)/g;
+            let match;
+            const fields = {};
+            while ((match = regexPattern.exec(data)) !== null) {
+              console.log(match[1]);
+              const fieldName = match[1];
+              const fieldValue = match[2].trim() || null; // Use null for empty field values
+              fields[fieldName] = fieldValue;
+            }
+            console.log(fields)
+
+      - name: Check if card is added to a project
+        run: |
+          if [ "${{ github.event.project_card.column_name }}" != "To do" ]; then
+            echo "::set-output name=valid::false"
+          else
+            echo "::set-output name=valid::true"
+          fi
+        id: check_card
+
+      - name: Process card
+        if: steps.check_card.outputs.valid == 'true'
+        run: |
+          # Add your processing steps here
+          echo "Processing card with content: ${{ github.event.project_card.note }}"

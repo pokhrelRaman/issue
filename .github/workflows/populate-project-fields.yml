@@ -51,7 +51,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         PROJECT_NUMBER: 1
-
+        uses: actions/github-script@v4
         run: |
           gh api graphql -f query='
             query($org: String!, $number: Int!) {

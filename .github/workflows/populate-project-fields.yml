@@ -40,11 +40,7 @@ jobs:
 
       - name: Check if card is added to a project
         run: |
-          if [ "${{ github.event.project_card.column_name }}" != "To do" ]; then
-            echo "::set-output name=valid::false"
-          else
-            echo "::set-output name=valid::true"
-          fi
+          echo "::set-output name=valid::true"
         id: check_card
 
       - name: Process card

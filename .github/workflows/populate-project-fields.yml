@@ -16,23 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check if issue has custom fields
+    - name: Available Data in body
       id: check_fields
       uses: actions/github-script@v4
       with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             script: |
-              const data = `### Logged_By\n\nkhgfhjkl;\n\n### Reported_on\n\nhjkl;lhg\n\n### Epic_Features\n\noiuytreryuiop\n\n### URL\n\n_No response_\n\n### Description\n\ndfghjkl\n\n### Severity\n\nHigh\n\n### Environment\n\nDev\n\n### Screenshot(s)\n\ndfghjkl;\n\n### How to reproduce?\n\n_No response_\n\n### Expected Behavior\n\n_No response_`;
-              console.log(data);
-              const regexPattern = /### (\w+)\n\n(.+?)(?:\n\n|$)/g;
-              let match;
-              const fields = {};
-              while ((match = regexPattern.exec(data)) !== null) {
-                const fieldName = match[1];
-                const fieldValue = match[2];
-                fields[fieldName] = fieldValue;
-              }
-              console.log(fields);
+              console.log(context.payload)
 
     - name: Check if issue has custom fields
       id: fields
@@ -45,9 +35,10 @@ jobs:
           let match;
           const fields = {};
           while ((match = regexPattern.exec(data)) !== null) {
+            console.log(match[1]);
             const fieldName = match[1];
             const fieldValue = match[2].trim() || null; // Use null for empty field values
-            fields[fieldName] = fieldValue;
+            fields[fieldName] = fieldValue; 
           }
           console.log(fields);
               console.log(fields);
